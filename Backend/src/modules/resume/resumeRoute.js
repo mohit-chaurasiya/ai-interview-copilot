@@ -2,19 +2,13 @@ const express = require('express');
 const router = express.Router()
 
 const upload = require('./uploadMiddleware')
+const { uploadResume } = require('./resumeController')
 
 // upload pdf
 
 router.post("/upload",
     upload.single("resume"),
-    (req, res) => {
-        console.log(req.file);
-
-        res.json({
-            success: true,
-            message: "Resume upload successfully"
-        })
-    }
+    uploadResume
 )
 
 

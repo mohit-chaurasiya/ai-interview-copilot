@@ -4,7 +4,9 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const connectDb = require('./config/db')
-const ai = require('./services/geminiServices')
+const ai = require('./src/services/geminiServices')
+
+const resumeRoute = require('./src/modules/resume/resumeRoute')
 
 
 
@@ -30,7 +32,7 @@ app.get('/test-ai', async (req, res) => {
         // console.log(process.env.GEMINI_API_KEY);
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
-            contents: "Explain react in 50 words",
+            contents: "Explain reacs in 50 words in computerr science",
         });
 
         res.json({
@@ -45,6 +47,9 @@ app.get('/test-ai', async (req, res) => {
         })
     }
 })
+
+// resume route
+app.use('/api/resume', resumeRoute)
 
 
 
